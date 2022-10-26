@@ -9,6 +9,7 @@ import NotFound from 'pages/NotFound';
 import Cast from './Cast';
 import Reviews from './Reviews';
 import Layout from './Layout';
+import { GlobalStyle } from './GlobalStyle/GlobalStyle';
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
       <Routes>
         <Route exact path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/:page" element={<Home />}></Route>
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
@@ -24,6 +26,7 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <GlobalStyle />
     </>
   );
 };

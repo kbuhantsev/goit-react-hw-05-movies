@@ -6,7 +6,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 export default class MovieDatabase {
   #searchResult = [];
 
-  constructor(onShow) {
+  constructor() {
     this.genres = null;
     this.#setGenres();
   }
@@ -80,7 +80,7 @@ export default class MovieDatabase {
   }
 
   getFilmFromResults(movieID) {
-    return this.#searchResult.find(element => element.id == movieID);
+    return this.#searchResult.find(element => element.id === movieID);
   }
 
   get searchResult() {

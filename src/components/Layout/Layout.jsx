@@ -1,20 +1,17 @@
-import { Link, Outlet } from 'react-router-dom';
+import AppBar from 'components/AppBar';
+import Box from 'components/Box';
+import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <Outlet />
+      <Box as="header">
+        <AppBar />
+        <hr />
+      </Box>
+      <Box as="main">
+        <Outlet />
+      </Box>
     </>
   );
 }
