@@ -20,7 +20,6 @@ export default function Home() {
   useEffect(() => {
     const getTrends = async () => {
       const data = await movieApi.getTrending(currentPage);
-      console.log(data);
       total_pages.current = data.total_pages;
       setData(data.results);
     };
