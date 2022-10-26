@@ -29,6 +29,18 @@ export default class MovieDatabase {
     return await this.#axiosGet(URL);
   }
 
+  // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+  async getMovieCredits(movieID) {
+    const URL = `${BASE_URL}movie/${movieID}/credits?api_key=${API_KEY}`;
+    return await this.#axiosGet(URL);
+  }
+
+  // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
+  async getMovieReviews(movieID) {
+    const URL = `${BASE_URL}movie/${movieID}/reviews?api_key=${API_KEY}`;
+    return await this.#axiosGet(URL);
+  }
+
   async getTrailers(movieID) {
     const URL = `${BASE_URL}movie/${movieID}/videos?api_key=${API_KEY}`;
     return await this.#axiosGet(URL);
