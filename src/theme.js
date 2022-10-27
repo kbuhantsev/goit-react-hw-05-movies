@@ -11,6 +11,8 @@ export const theme = {
     black: '#000',
     white: '#fff',
     text: '#2a2a2a',
+    main: '#4e63fc',
+    accent: '#170bfb',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {

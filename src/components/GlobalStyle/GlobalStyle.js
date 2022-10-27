@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-// import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -20,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  ul, ol {
+  ul {
     margin: 0;
     padding: 0;
     list-style: none;

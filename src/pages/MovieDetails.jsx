@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 import { BiArrowBack } from 'react-icons/bi';
+import Box from 'components/Box';
+import { useTheme } from 'styled-components';
 
 const movieApi = new MovieDatabase();
 
@@ -11,6 +18,9 @@ export default function MovieDetails() {
   const navigate = useNavigate();
   const { movieId } = useParams();
   const [data, setData] = useState(null);
+  const theme = useTheme();
+
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     const getMovie = async () => {
@@ -21,35 +31,49 @@ export default function MovieDetails() {
   }, [movieId]);
 
   const onButtonBackClick = () => {
-    navigate(location.state.from, { replace: true });
+    navigate(backLinkHref, { replace: true });
   };
 
   if (!data) return;
 
   return (
-    <>
+    <Box gridGap="10px">
       <button type="button" onClick={onButtonBackClick}>
-        <BiArrowBack color="blue" />
+        <BiArrowBack color={theme.colors.accent} />
         Go back
       </button>
-      <img
-        src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
-        alt={data.title}
-        loading="lazy"
-        width={400}
-      />
-      <p>{data.title}</p>
-      <p>{data.overview}</p>
+
+      <Box flexDirection="row" gridGap="20px">
+        <img
+          src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
+          alt={data.title}
+          loading="lazy"
+          width={400}
+        />
+        <Box>
+          <Box as="h2">{data.title}</Box>
+          <p>{data.overview}</p>
+        </Box>
+      </Box>
 
       <ul>
         <li>
-          <Link to="cast">CAST</Link>
+          <Link to="cast" state={{ from: backLinkHref }}>
+            CAST
+          </Link>
         </li>
         <li>
-          <Link to="reviews">REVIEWS</Link>
+          <Link to="reviews" state={{ from: backLinkHref }}>
+            REVIEWS
+          </Link>
+        </li>
+        <li>
+          <Link to="trailers" state={{ from: backLinkHref }}>
+            TRAILERS
+          </Link>
         </li>
       </ul>
       <Outlet />
-    </>
+    </Box>
   );
 }

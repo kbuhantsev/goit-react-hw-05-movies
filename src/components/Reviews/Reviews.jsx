@@ -19,21 +19,18 @@ export default function Reviews() {
   if (!data) return;
 
   return (
-    <>
-      <p>Reviews</p>
-      <ul>
-        {data.results.map(
-          ({ id, author, author_details, content, created_at }) => (
-            <li key={id}>
-              <p>
-                {author} ({author_details.username})
-              </p>
-              <p>Date: {created_at}</p>
-              <p>{content}</p>
-            </li>
-          )
-        )}
-      </ul>
-    </>
+    <ul>
+      {data.results.map(
+        ({ id, author, author_details, content, created_at }) => (
+          <li key={id}>
+            <p>
+              {author} ({author_details.username})
+            </p>
+            <p>Date of review: {new Date(created_at).toLocaleString()}</p>
+            <p>{content}</p>
+          </li>
+        )
+      )}
+    </ul>
   );
 }
