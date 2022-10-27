@@ -11,11 +11,10 @@ export default class MovieDatabase {
     this.#setGenres();
   }
 
-  // https://api.themoviedb.org/3/trending/movie/week?api_key=<<api_key>>
   async getTrending(page) {
     const URL = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}&include_adult=false`;
     const data = await this.#axiosGet(URL);
-    if (!!data) {
+    if (data) {
       this.#updateGenres(data);
     }
     this.#searchResult = data.results;
@@ -23,19 +22,16 @@ export default class MovieDatabase {
     return data;
   }
 
-  // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
   async getMovie(movieID) {
     const URL = `${BASE_URL}movie/${movieID}?api_key=${API_KEY}`;
     return await this.#axiosGet(URL);
   }
 
-  // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
   async getMovieCredits(movieID) {
     const URL = `${BASE_URL}movie/${movieID}/credits?api_key=${API_KEY}`;
     return await this.#axiosGet(URL);
   }
 
-  // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
   async getMovieReviews(movieID) {
     const URL = `${BASE_URL}movie/${movieID}/reviews?api_key=${API_KEY}`;
     return await this.#axiosGet(URL);
@@ -46,7 +42,6 @@ export default class MovieDatabase {
     return await this.#axiosGet(URL);
   }
 
-  // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=titanic&page=1&include_adult=false
   async searchMovie(query, page = 1) {
     const URL = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=${page}&include_adult=false`;
     const data = await this.#axiosGet(URL);
@@ -58,7 +53,6 @@ export default class MovieDatabase {
     return data;
   }
 
-  //https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>
   async #setGenres() {
     const URL = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
     const result = await this.#axiosGet(URL);

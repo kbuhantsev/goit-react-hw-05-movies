@@ -17,7 +17,7 @@ export default function Reviews() {
   }, [movieId]);
 
   if (!data) return;
-  console.log(data);
+
   return (
     <>
       <p>Reviews</p>

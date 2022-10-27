@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
+import { BiArrowBack } from 'react-icons/bi';
 
 const movieApi = new MovieDatabase();
 
 export default function MovieDetails() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { movieId } = useParams();
   const [data, setData] = useState(null);
 
@@ -16,11 +20,18 @@ export default function MovieDetails() {
     getMovie();
   }, [movieId]);
 
+  const onButtonBackClick = () => {
+    navigate(location.state.from, { replace: true });
+  };
+
   if (!data) return;
 
   return (
     <>
-      <p>MovieDetails</p>
+      <button type="button" onClick={onButtonBackClick}>
+        <BiArrowBack color="blue" />
+        Go back
+      </button>
       <img
         src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
         alt={data.title}

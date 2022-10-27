@@ -1,6 +1,7 @@
+import Gallery from 'components/Gallery';
 import Pagination from 'components/Pagination';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 
 const movieApi = new MovieDatabase();
@@ -11,11 +12,16 @@ export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const total_pages = useRef(0);
 
-  const page = searchParams.get('page');
+  useEffect(() => {
+    if (!searchParams) return;
+    const page = searchParams.get('page');
 
-  if (page && page !== currentPage) {
-    setCurrentPage(page);
-  }
+    if (page && page !== currentPage) {
+      setCurrentPage(page);
+    } else if (!page && currentPage !== 1) {
+      setCurrentPage(1);
+    }
+  }, [searchParams, currentPage]);
 
   useEffect(() => {
     const getTrends = async () => {
@@ -35,13 +41,7 @@ export default function Home() {
   return (
     <>
       <h2>Trending today</h2>
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>
-            <Link to={'/movies/' + item.id}>{item.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <Gallery items={data} />
       <Pagination
         totalItems={total_pages.current}
         currentPage={currentPage}

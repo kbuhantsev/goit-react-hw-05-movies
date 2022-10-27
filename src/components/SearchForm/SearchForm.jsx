@@ -7,11 +7,10 @@ export default function SearchForm() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query');
-  // console.log(query);
 
   const formik = useFormik({
     initialValues: {
-      input: query,
+      input: query ?? '',
     },
     onSubmit: ({ input }) => {
       setSearchParams({ query: input });
@@ -34,7 +33,7 @@ export default function SearchForm() {
         value={formik.values.input}
         placeholder="Batman"
       />
-      <button type="submit">Submit</button>
+      <button type="submit">Search</button>
     </form>
   );
 }

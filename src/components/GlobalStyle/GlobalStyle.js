@@ -25,4 +25,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     list-style: none;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
 `;
