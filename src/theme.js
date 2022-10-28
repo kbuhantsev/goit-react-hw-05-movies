@@ -44,7 +44,7 @@ export const theme = {
     '@media (min-width: 56em) and (orientation: landscape)',
   ],
   animation: {
-    easeFast: '300ms ease-out',
-    easeSlow: '300ms ease-out',
+    easeFast: '250ms ease-out',
+    easeSlow: '500ms ease-out',
   },
 };

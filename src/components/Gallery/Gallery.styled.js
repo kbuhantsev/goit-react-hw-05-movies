@@ -58,7 +58,7 @@ export const ImgStyled = styled.img`
   }
 `;
 
-export const DescrListStyled = styled.li`
+export const DescrListStyled = styled.ul`
   padding: 10px 5px;
   gap: 5px;
 `;

@@ -7,9 +7,15 @@ const NavLinkStyled = styled(NavLink)`
   border-radius: ${p => p.theme.radii.normal};
   color: ${p => p.theme.colors.black};
 
+  transition: background-color ${p => p.theme.animation.easeFast};
+
   &.active {
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};
+  }
+
+  &:hover:not(.active) {
+    background-color: ${p => p.theme.colors.main};
   }
 `;
 
