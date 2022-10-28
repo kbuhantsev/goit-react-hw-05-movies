@@ -1,4 +1,5 @@
 import Gallery from 'components/Gallery';
+import PageTitle from 'components/PageTitle';
 import Pagination from 'components/Pagination';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -40,7 +41,7 @@ export default function Home() {
 
   return (
     <>
-      <h2>Trending today</h2>
+      <PageTitle titleText="Trending today" />
       <Gallery items={data} />
       <Pagination
         totalItems={total_pages.current}

@@ -10,6 +10,7 @@ import MovieDatabase from 'utils/MovieDatabaseAPI';
 import { BiArrowBack } from 'react-icons/bi';
 import Box from 'components/Box';
 import { useTheme } from 'styled-components';
+import PageTitle from 'components/PageTitle';
 
 const movieApi = new MovieDatabase();
 
@@ -44,11 +45,11 @@ export default function MovieDetails() {
 
   return (
     <Box gridGap="10px">
+      <PageTitle titleText="Movie details" />
       <button type="button" onClick={onButtonBackClick}>
         <BiArrowBack color={theme.colors.accent} />
         Go back
       </button>
-
       <Box flexDirection="row" gridGap="20px">
         <img
           src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
@@ -61,7 +62,6 @@ export default function MovieDetails() {
           <p>{data.overview}</p>
         </Box>
       </Box>
-
       <ul>
         {navItems.map(({ href, text }) => (
           <li key={text}>
@@ -71,7 +71,6 @@ export default function MovieDetails() {
           </li>
         ))}
       </ul>
-
       <Outlet />
     </Box>
   );

@@ -1,17 +1,17 @@
-const fontSizes = [12, 14, 16, 20, 24, 32, 64];
-fontSizes.xs = fontSizes[0];
-fontSizes.s = fontSizes[1];
-fontSizes.m = fontSizes[2];
-fontSizes.l = fontSizes[4];
-fontSizes.xl = fontSizes[5];
-fontSizes.xxl = fontSizes[6];
+const fontSizes = [12, 14, 18, 20, 24, 32, 64];
+fontSizes.xs = fontSizes[0] + 'px';
+fontSizes.s = fontSizes[1] + 'px';
+fontSizes.m = fontSizes[2] + 'px';
+fontSizes.l = fontSizes[4] + 'px';
+fontSizes.xl = fontSizes[5] + 'px';
+fontSizes.xxl = fontSizes[6] + 'px';
 
 export const theme = {
   colors: {
     black: '#000',
     white: '#fff',
     text: '#2a2a2a',
-    main: '#4e63fc',
+    main: '#b3d8ff',
     accent: '#170bfb',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
@@ -43,4 +43,8 @@ export const theme = {
     '1170px',
     '@media (min-width: 56em) and (orientation: landscape)',
   ],
+  animation: {
+    easeFast: '300ms ease-out',
+    easeSlow: '300ms ease-out',
+  },
 };

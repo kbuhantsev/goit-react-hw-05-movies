@@ -15,6 +15,10 @@ export default function Pagination(props) {
     paginate.movePageTo(currentPage);
     paginate.on('beforeMove', ({ page }) => {
       updateCurrentPage(page);
+      window.scrollTo({
+        top: 100,
+        behavior: 'smooth',
+      });
     });
   }, [currentPage, totalItems, updateCurrentPage]);
 

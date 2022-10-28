@@ -4,9 +4,9 @@ const ContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 32px;
 `;
 
 export default ContainerStyled;
