@@ -1,6 +1,6 @@
 import Gallery from 'components/Gallery';
 import SearchForm from 'components/SearchForm';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 
@@ -24,10 +24,9 @@ export default function Movies() {
   }, [searchParams, query]);
 
   return (
-    <>
-      <p>Movies</p>
+    <Suspense fallback={<></>}>
       <SearchForm />
       {data && <Gallery items={data} />}
-    </>
+    </Suspense>
   );
 }

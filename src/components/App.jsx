@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { GlobalStyle } from './GlobalStyle/GlobalStyle';
+import Container from './Container/Container';
+
 import Home from 'pages/Home';
-import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
 import NotFound from 'pages/NotFound';
 
 import Cast from './Cast';
 import Reviews from './Reviews';
 import Layout from './Layout';
-import { GlobalStyle } from './GlobalStyle/GlobalStyle';
 import Trailers from './Trailers';
+
+const Movies = lazy(() => import('../pages/Movies'));
 
 export const App = () => {
   return (
-    <>
+    <Container>
       <Routes>
-        <Route exact path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
@@ -28,6 +31,6 @@ export const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <GlobalStyle />
-    </>
+    </Container>
   );
 };

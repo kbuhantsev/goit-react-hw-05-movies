@@ -14,7 +14,7 @@ const OverlayStyled = styled.div`
 
 const ModalStyled = styled.div`
   width: 80vw;
-  height: 60vh;
+  height: 70vh;
 `;
 
 export { OverlayStyled, ModalStyled };

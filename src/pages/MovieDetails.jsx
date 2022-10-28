@@ -13,6 +13,12 @@ import { useTheme } from 'styled-components';
 
 const movieApi = new MovieDatabase();
 
+const navItems = [
+  { href: 'cast', text: 'Cast' },
+  { href: 'reviews', text: 'Reviews' },
+  { href: 'trailers', text: 'Trailers' },
+];
+
 export default function MovieDetails() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -57,22 +63,15 @@ export default function MovieDetails() {
       </Box>
 
       <ul>
-        <li>
-          <Link to="cast" state={{ from: backLinkHref }}>
-            CAST
-          </Link>
-        </li>
-        <li>
-          <Link to="reviews" state={{ from: backLinkHref }}>
-            REVIEWS
-          </Link>
-        </li>
-        <li>
-          <Link to="trailers" state={{ from: backLinkHref }}>
-            TRAILERS
-          </Link>
-        </li>
+        {navItems.map(({ href, text }) => (
+          <li key={text}>
+            <Link to={href} state={{ from: backLinkHref }}>
+              {text}
+            </Link>
+          </li>
+        ))}
       </ul>
+
       <Outlet />
     </Box>
   );
