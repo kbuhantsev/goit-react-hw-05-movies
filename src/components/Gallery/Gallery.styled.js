@@ -47,14 +47,14 @@ export const GalleryLiStyled = styled.li`
 
 export const ImgStyled = styled.img`
   width: 100%;
-  height: 400px;
+  /* height: 400px; */
 
   @media screen and (min-width: 768px) {
-    height: 450px;
+    /* height: 450px; */
   }
 
   @media screen and (min-width: 1280px) {
-    height: 575px;
+    /* height: 575px; */
   }
 `;
 
