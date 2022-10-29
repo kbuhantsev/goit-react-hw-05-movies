@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from './GlobalStyle/GlobalStyle';
@@ -13,7 +13,8 @@ import Reviews from './Reviews';
 import Layout from './Layout';
 import Trailers from './Trailers';
 
-const Movies = lazy(() => import('../pages/Movies'));
+// const Movies = lazy(() => import('../pages/Movies'));
+import Movies from 'pages/Movies';
 
 export const App = () => {
   return (

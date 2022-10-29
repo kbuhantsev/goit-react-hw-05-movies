@@ -1,7 +1,7 @@
 import Gallery from 'components/Gallery';
 import PageTitle from 'components/PageTitle';
 import SearchForm from 'components/SearchForm';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 
@@ -25,10 +25,12 @@ export default function Movies() {
   }, [searchParams, query]);
 
   return (
-    <Suspense>
+    // <Suspense fallback={<div>Loading...</div>}>
+    <>
       <PageTitle titleText="Movies search" />
       <SearchForm />
       {data && <Gallery items={data} />}
-    </Suspense>
+    </>
+    // </Suspense>
   );
 }
