@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-//form label input button
-
 export const FormStyled = styled.form`
   display: flex;
   gap: 5px;
@@ -20,6 +18,7 @@ export const ButtonStyled = styled.button`
   display: inline-flex;
   width: fit-content;
   gap: 5px;
+  cursor: pointer;
   font-weight: ${p => p.theme.fontWeights.medium};
   padding: 4px 8px;
   border-radius: ${p => p.theme.radii.normal};

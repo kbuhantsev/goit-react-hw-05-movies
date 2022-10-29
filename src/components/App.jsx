@@ -7,14 +7,12 @@ import Container from './Container/Container';
 import Home from 'pages/Home';
 import MovieDetails from 'pages/MovieDetails';
 import NotFound from 'pages/NotFound';
+import Movies from 'pages/Movies';
 
 import Cast from './Cast';
 import Reviews from './Reviews';
 import Layout from './Layout';
 import Trailers from './Trailers';
-
-// const Movies = lazy(() => import('../pages/Movies'));
-import Movies from 'pages/Movies';
 
 export const App = () => {
   return (

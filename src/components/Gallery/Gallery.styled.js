@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import placeHolder from '../../images/empty.png';
 
 export const StyledLink = styled(Link)`
   display: block;
   height: 100%;
-  background-image: url(${placeHolder});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 200px;
 `;
 
 export const GalleryUlStyled = styled.ul`

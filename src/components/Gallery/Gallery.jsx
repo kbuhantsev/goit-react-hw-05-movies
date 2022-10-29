@@ -10,8 +10,15 @@ import {
   DescrGenreStyled,
 } from './Gallery.styled';
 
+import plaseholderImg from '../../images/empty.png';
+
 export default function Gallery({ items }) {
   const location = useLocation();
+
+  const onError = event => {
+    event.target.src = plaseholderImg;
+    event.target.style.height = '400px';
+  };
 
   return (
     <GalleryUlStyled>
@@ -28,6 +35,7 @@ export default function Gallery({ items }) {
               alt={!!poster_path ? title : 'broken'}
               loading="lazy"
               width="280"
+              onError={onError}
             />
           </StyledLink>
           <DescrListStyled>

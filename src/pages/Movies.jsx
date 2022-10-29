@@ -25,12 +25,10 @@ export default function Movies() {
   }, [searchParams, query]);
 
   return (
-    // <Suspense fallback={<div>Loading...</div>}>
     <>
       <PageTitle titleText="Movies search" />
       <SearchForm />
       {data && <Gallery items={data} />}
     </>
-    // </Suspense>
   );
 }
