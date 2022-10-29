@@ -9,8 +9,10 @@ import {
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 import { BiArrowBack } from 'react-icons/bi';
 import Box from 'components/Box';
-import { useTheme } from 'styled-components';
+// import { useTheme } from 'styled-components';
 import PageTitle from 'components/PageTitle';
+import { ButtonStyled } from 'components/SearchForm/SerachForm.styled';
+import MovieDescription from 'components/MovieDescription';
 
 const movieApi = new MovieDatabase();
 
@@ -25,7 +27,7 @@ export default function MovieDetails() {
   const navigate = useNavigate();
   const { movieId } = useParams();
   const [data, setData] = useState(null);
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const backLinkHref = location.state?.from ?? '/';
 
@@ -46,11 +48,14 @@ export default function MovieDetails() {
   return (
     <Box gridGap="10px">
       <PageTitle titleText="Movie details" />
-      <button type="button" onClick={onButtonBackClick}>
-        <BiArrowBack color={theme.colors.accent} />
+
+      <ButtonStyled type="button" onClick={onButtonBackClick}>
+        <BiArrowBack />
         Go back
-      </button>
-      <Box flexDirection="row" gridGap="20px">
+      </ButtonStyled>
+      <MovieDescription movie={data} />
+
+      {/* <Box flexDirection="row" gridGap="20px">
         <img
           src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
           alt={data.title}
@@ -61,7 +66,7 @@ export default function MovieDetails() {
           <Box as="h2">{data.title}</Box>
           <p>{data.overview}</p>
         </Box>
-      </Box>
+      </Box> */}
       <ul>
         {navItems.map(({ href, text }) => (
           <li key={text}>

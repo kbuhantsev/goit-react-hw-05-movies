@@ -18,6 +18,7 @@ export const InputStyled = styled.input`
 
 export const ButtonStyled = styled.button`
   display: inline-flex;
+  width: fit-content;
   gap: 5px;
   font-weight: ${p => p.theme.fontWeights.medium};
   padding: 4px 8px;
