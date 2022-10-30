@@ -1,4 +1,18 @@
+import Box from 'components/Box';
 import React from 'react';
+import {
+  DescrList,
+  DescrListTitle,
+  DescrListValue,
+  DescrListValues,
+  DescrTitle,
+  DescrWrapperStyled,
+  FilmDescrContainer,
+  ImageStyled,
+  ImageWrapperStyled,
+  Vote,
+  VoteAccent,
+} from './MovieDescription.styled';
 
 export default function MovieDescription({ movie }) {
   const {
@@ -12,10 +26,9 @@ export default function MovieDescription({ movie }) {
     overview,
   } = movie;
   return (
-    <>
-      <div className="image">
-        <img
-          className="image__picture"
+    <FilmDescrContainer>
+      <ImageWrapperStyled>
+        <ImageStyled
           src={
             !!poster_path
               ? 'https://image.tmdb.org/t/p/w780' + poster_path
@@ -23,53 +36,52 @@ export default function MovieDescription({ movie }) {
           }
           alt={title}
         />
-      </div>
-      <div className="description">
-        <p className="description__title">{title}</p>
-        <ul className="description-list">
-          <li className="description-list__item">
-            <ul className="description-list__values">
-              <li className="description-list__title">Vote / Votes</li>
-              <li className="description-list__value">
-                <span className="description-list__value--vote-orange">
-                  {vote_average.toFixed(1)}
-                </span>
-                /
-                <span className="description-list__value--vote-grey">
-                  {vote_count}
-                </span>
-              </li>
-            </ul>
+      </ImageWrapperStyled>
+      <DescrWrapperStyled>
+        <DescrTitle>{title}</DescrTitle>
+        <DescrList>
+          <li>
+            <DescrListValues>
+              <DescrListTitle>Vote / Votes</DescrListTitle>
+              <DescrListValue>
+                <VoteAccent>{vote_average.toFixed(1)}</VoteAccent>/
+                <Vote>{vote_count}</Vote>
+              </DescrListValue>
+            </DescrListValues>
           </li>
-          <li className="description-list__item">
-            <ul className="description-list__values">
-              <li className="description-list__title">Popularity</li>
-              <li className="description-list__value">{popularity}</li>
-            </ul>
+          <li>
+            <DescrListValues>
+              <DescrListTitle>Popularity</DescrListTitle>
+              <DescrListValue>{popularity}</DescrListValue>
+            </DescrListValues>
           </li>
-          <li className="description-list__item">
-            <ul className="description-list__values">
-              <li className="description-list__title">Original Title</li>
-              <li className="description-list__value">{original_title}</li>
-            </ul>
+          <li>
+            <DescrListValues>
+              <DescrListTitle>Original Title</DescrListTitle>
+              <DescrListValue>{original_title}</DescrListValue>
+            </DescrListValues>
           </li>
-          <li className="description-list__item">
-            <ul className="description-list__values">
-              <li className="description-list__title">Genre</li>
-              <li className="description-list__value">
+          <li>
+            <DescrListValues>
+              <DescrListTitle>Genre</DescrListTitle>
+              <DescrListValue>
                 {genres
                   .slice(0, 3)
                   .map(elem => elem.name)
                   .join(', ')}
-              </li>
-            </ul>
+              </DescrListValue>
+            </DescrListValues>
           </li>
-        </ul>
-        <div className="film-about">
-          <p className="film-about__header">About</p>
-          <p className="film-about__text">{overview}</p>
-        </div>
-      </div>
-    </>
+        </DescrList>
+        <Box>
+          <Box as="p" marginBottom="10px" fontSize="20px">
+            About
+          </Box>
+          <Box as="p" lineHeight="1.5">
+            {overview}
+          </Box>
+        </Box>
+      </DescrWrapperStyled>
+    </FilmDescrContainer>
   );
 }

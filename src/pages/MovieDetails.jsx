@@ -55,18 +55,6 @@ export default function MovieDetails() {
       </ButtonStyled>
       <MovieDescription movie={data} />
 
-      {/* <Box flexDirection="row" gridGap="20px">
-        <img
-          src={'https://image.tmdb.org/t/p/w780/' + data.poster_path}
-          alt={data.title}
-          loading="lazy"
-          width={400}
-        />
-        <Box>
-          <Box as="h2">{data.title}</Box>
-          <p>{data.overview}</p>
-        </Box>
-      </Box> */}
       <ul>
         {navItems.map(({ href, text }) => (
           <li key={text}>
