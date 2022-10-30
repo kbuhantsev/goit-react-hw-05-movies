@@ -3,6 +3,7 @@ import VideoFrame from 'components/VideoFrame';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
+import { StyledItem, StyledList } from './Trailers.styled';
 
 const movieApi = new MovieDatabase();
 
@@ -43,18 +44,18 @@ export default function Trailers() {
 
   return (
     <>
-      <ol>
+      <StyledList>
         {data.map(({ id, name, key }) => (
-          <li key={id}>
+          <StyledItem key={id}>
             <p
               onClick={() => onVideoNameClick(key)}
               style={{ cursor: 'pointer' }}
             >
               {name}
             </p>
-          </li>
+          </StyledItem>
         ))}
-      </ol>
+      </StyledList>
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
           <VideoFrame videoKey={trailerKey} />

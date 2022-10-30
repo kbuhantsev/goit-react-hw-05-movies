@@ -17,6 +17,9 @@ export default function Home() {
     if (!searchParams) return;
     const page = searchParams.get('page');
 
+    console.log(page);
+    console.log(currentPage);
+
     if (page && page !== currentPage) {
       setCurrentPage(page);
     } else if (!page && currentPage !== 1) {

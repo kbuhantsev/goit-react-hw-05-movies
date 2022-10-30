@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { LinkStyled, List } from './MovieDetailsBar.styled';
 
-export default function MovieDetailsBar({ navItems }) {
+export default function MovieDetailsBar({ navItems, backLink }) {
   const location = useLocation();
 
   const { pathname } = location;
@@ -16,6 +16,7 @@ export default function MovieDetailsBar({ navItems }) {
         <li key={text}>
           <LinkStyled
             to={href}
+            state={{ from: backLink }}
             className={currPage === text.toLowerCase() ? 'active' : ''}
           >
             {text}

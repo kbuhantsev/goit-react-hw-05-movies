@@ -1,3 +1,4 @@
+import Box from 'components/Box';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
@@ -19,18 +20,20 @@ export default function Reviews() {
   if (!data) return;
 
   return (
-    <ul>
+    <Box as="ul" marginTop="20px">
       {data.results.map(
         ({ id, author, author_details, content, created_at }) => (
           <li key={id}>
-            <p>
+            <Box as="p" fontWeight="500" fontSize="18px">
               {author} ({author_details.username})
-            </p>
+            </Box>
             <p>Date of review: {new Date(created_at).toLocaleString()}</p>
-            <p>{content}</p>
+            <Box as="p" marginTop="5px" marginBottom="10px">
+              {content}
+            </Box>
           </li>
         )
       )}
-    </ul>
+    </Box>
   );
 }

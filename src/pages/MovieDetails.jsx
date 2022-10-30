@@ -49,7 +49,7 @@ export default function MovieDetails() {
 
       <MovieDescription movie={data} />
 
-      <MovieDetailsBar navItems={navItems} />
+      <MovieDetailsBar navItems={navItems} backLink={backLinkHref} />
 
       <Outlet />
     </Box>
