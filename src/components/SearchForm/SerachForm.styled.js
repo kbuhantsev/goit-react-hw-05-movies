@@ -19,6 +19,7 @@ export const ButtonStyled = styled.button`
   width: fit-content;
   gap: 5px;
   cursor: pointer;
+  font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.medium};
   padding: 4px 8px;
   border-radius: ${p => p.theme.radii.normal};

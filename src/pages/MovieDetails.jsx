@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 import { BiArrowBack } from 'react-icons/bi';
 import Box from 'components/Box';
-// import { useTheme } from 'styled-components';
 import PageTitle from 'components/PageTitle';
 import { ButtonStyled } from 'components/SearchForm/SerachForm.styled';
 import MovieDescription from 'components/MovieDescription';
+import MovieDetailsBar from 'components/MovieDetailsBar';
 
 const movieApi = new MovieDatabase();
 
@@ -27,7 +21,6 @@ export default function MovieDetails() {
   const navigate = useNavigate();
   const { movieId } = useParams();
   const [data, setData] = useState(null);
-  // const theme = useTheme();
 
   const backLinkHref = location.state?.from ?? '/';
 
@@ -53,17 +46,11 @@ export default function MovieDetails() {
         <BiArrowBack />
         Go back
       </ButtonStyled>
+
       <MovieDescription movie={data} />
 
-      <ul>
-        {navItems.map(({ href, text }) => (
-          <li key={text}>
-            <Link to={href} state={{ from: backLinkHref }}>
-              {text}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MovieDetailsBar navItems={navItems} />
+
       <Outlet />
     </Box>
   );
