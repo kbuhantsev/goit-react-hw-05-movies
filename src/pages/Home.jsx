@@ -9,32 +9,19 @@ const movieApi = new MovieDatabase();
 
 export default function Home() {
   const [data, setData] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const total_pages = useRef(0);
 
-  useEffect(() => {
-    if (!searchParams) return;
-    const page = searchParams.get('page');
-
-    console.log(page);
-    console.log(currentPage);
-
-    if (page && page !== currentPage) {
-      setCurrentPage(page);
-    } else if (!page && currentPage !== 1) {
-      setCurrentPage(1);
-    }
-  }, [searchParams, currentPage]);
+  const page = searchParams.get('page') ?? 1;
 
   useEffect(() => {
     const getTrends = async () => {
-      const data = await movieApi.getTrending(currentPage);
+      const data = await movieApi.getTrending(page);
       total_pages.current = data.total_pages;
       setData(data.results);
     };
     getTrends();
-  }, [currentPage, total_pages]);
+  }, [page, total_pages]);
 
   const updateCurrentPage = value => {
     setSearchParams({ page: value });
@@ -48,7 +35,7 @@ export default function Home() {
       <Gallery items={data} />
       <Pagination
         totalItems={total_pages.current}
-        currentPage={currentPage}
+        currentPage={page}
         updateCurrentPage={updateCurrentPage}
       />
     </>

@@ -30,6 +30,13 @@ export default function Trailers() {
     }
   }, [trailerKey]);
 
+  useEffect(() => {
+    window.scrollBy({
+      top: 200,
+      behavior: 'smooth',
+    });
+  }, [data]);
+
   const onVideoNameClick = key => {
     setTrailerKey(key);
   };

@@ -17,6 +17,13 @@ export default function Cast() {
     getMovieCredits();
   }, [movieId]);
 
+  useEffect(() => {
+    window.scrollBy({
+      top: window.screen.height / 2,
+      behavior: 'smooth',
+    });
+  }, [data]);
+
   if (!data) return;
 
   return (
