@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { LinkStyled, List } from './MovieDetailsBar.styled';
+import PropTypes from 'prop-types';
 
 export default function MovieDetailsBar({ navItems, backLink }) {
   const location = useLocation();
@@ -26,3 +27,13 @@ export default function MovieDetailsBar({ navItems, backLink }) {
     </List>
   );
 }
+
+MovieDetailsBar.propTypes = {
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
+  backLink: PropTypes.object,
+};

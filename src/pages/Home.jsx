@@ -12,7 +12,7 @@ export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const total_pages = useRef(0);
 
-  const page = searchParams.get('page') ?? 1;
+  const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
 
   useEffect(() => {
     const getTrends = async () => {

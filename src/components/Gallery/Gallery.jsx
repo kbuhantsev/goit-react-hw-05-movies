@@ -9,8 +9,8 @@ import {
   DescrTitleStyled,
   DescrGenreStyled,
 } from './Gallery.styled';
-
 import plaseholderImg from '../../images/empty.png';
+import PropTypes from 'prop-types';
 
 export default function Gallery({ items }) {
   const location = useLocation();
@@ -58,3 +58,20 @@ export default function Gallery({ items }) {
     </GalleryUlStyled>
   );
 }
+
+Gallery.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+      genres: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+        })
+      ),
+      id: PropTypes.number,
+      title: PropTypes.string,
+    })
+  ),
+};

@@ -1,10 +1,14 @@
 import { useEffect, useRef } from 'react';
 import pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import PropTypes from 'prop-types';
 
-export default function Pagination(props) {
+export default function Pagination({
+  totalItems,
+  currentPage,
+  updateCurrentPage,
+}) {
   const $el = useRef(null);
-  const { totalItems, currentPage, updateCurrentPage } = props;
 
   useEffect(() => {
     const paginate = new pagination($el.current, {
@@ -30,3 +34,9 @@ export default function Pagination(props) {
     ></div>
   );
 }
+
+Pagination.propTypes = {
+  totalItems: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  updateCurrentPage: PropTypes.func.isRequired,
+};

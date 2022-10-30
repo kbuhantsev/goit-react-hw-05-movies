@@ -13,6 +13,7 @@ import {
   Vote,
   VoteAccent,
 } from './MovieDescription.styled';
+import PropTypes from 'prop-types';
 
 export default function MovieDescription({ movie }) {
   const {
@@ -85,3 +86,21 @@ export default function MovieDescription({ movie }) {
     </FilmDescrContainer>
   );
 }
+
+MovieDescription.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+    popularity: PropTypes.number,
+    original_title: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      })
+    ),
+    overview: PropTypes.string,
+  }),
+};

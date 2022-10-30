@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalStyled, OverlayStyled } from './ModalWindow.styled';
+import PropTypes from 'prop-types';
 
 const container = document.getElementById('modal-root');
 
@@ -31,3 +32,8 @@ export default function ModalWindow({ onClose, children }) {
     container
   );
 }
+
+ModalWindow.propTypes = {
+  onClose: PropTypes.func,
+  children: PropTypes.node,
+};

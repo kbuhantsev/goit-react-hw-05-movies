@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function VideoFrame({ videoKey }) {
   return (
@@ -15,3 +16,7 @@ export default function VideoFrame({ videoKey }) {
     />
   );
 }
+
+VideoFrame.propTypes = {
+  videoKey: PropTypes.string.isRequired,
+};
