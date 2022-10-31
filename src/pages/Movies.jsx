@@ -17,11 +17,10 @@ export default function Movies() {
       setData(null);
       return;
     }
-    const findMovies = async () => {
+    (async function () {
       const data = await movieApi.searchMovie(query);
       setData(data.results);
-    };
-    findMovies();
+    })();
   }, [searchParams, query]);
 
   return (

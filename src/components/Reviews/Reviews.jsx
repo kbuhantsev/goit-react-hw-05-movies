@@ -10,11 +10,10 @@ export default function Reviews() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const getMovieReviews = async () => {
+    (async function () {
       const data = await movieApi.getMovieReviews(movieId);
       setData(data);
-    };
-    getMovieReviews();
+    })();
   }, [movieId]);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function Reviews() {
 
   if (!data) return;
 
-  return (
+  return data.results.length ? (
     <Box as="ul" marginTop="20px">
       {data.results.map(
         ({ id, author, author_details, content, created_at }) => (
@@ -42,5 +41,7 @@ export default function Reviews() {
         )
       )}
     </Box>
+  ) : (
+    <Box marginTop="10px">No reviews from users...</Box>
   );
 }

@@ -1,6 +1,7 @@
+import Box from 'components/Box';
 import ModalWindow from 'components/ModalWindow';
 import VideoFrame from 'components/VideoFrame';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDatabase from 'utils/MovieDatabaseAPI';
 import { StyledItem, StyledList } from './Trailers.styled';
@@ -11,24 +12,16 @@ export default function Trailers() {
   const { movieId } = useParams();
   const [data, setData] = useState(null);
   const [trailerKey, setTrailerKey] = useState(null);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const getTrailers = async () => {
+    (async function () {
       const data = await movieApi.getTrailers(movieId);
       if (data) {
         setData(data.results.filter(item => item.type === 'Trailer'));
       }
-    };
-    getTrailers();
+    })();
   }, [movieId]);
-
-  useEffect(() => {
-    if (trailerKey) {
-      toggleModal();
-    }
-  }, [trailerKey]);
 
   useEffect(() => {
     window.scrollBy({
@@ -37,19 +30,20 @@ export default function Trailers() {
     });
   }, [data]);
 
-  const onVideoNameClick = key => {
-    setTrailerKey(key);
-  };
-
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     setIsModalOpen(prevState => {
       setIsModalOpen(!prevState);
     });
+  }, []);
+
+  const onVideoNameClick = key => {
+    setTrailerKey(key);
+    toggleModal();
   };
 
   if (!data) return;
 
-  return (
+  return data.length ? (
     <>
       <StyledList>
         {data.map(({ id, name, key }) => (
@@ -69,5 +63,7 @@ export default function Trailers() {
         </ModalWindow>
       )}
     </>
+  ) : (
+    <Box marginTop="10px">No trailers was found...</Box>
   );
 }

@@ -10,11 +10,10 @@ export default function Cast() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const getMovieCredits = async () => {
+    (async function () {
       const data = await movieApi.getMovieCredits(movieId);
       setData(data);
-    };
-    getMovieCredits();
+    })();
   }, [movieId]);
 
   useEffect(() => {
