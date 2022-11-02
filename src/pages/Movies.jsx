@@ -5,16 +5,10 @@ import Pagination from 'components/Pagination';
 import SearchForm from 'components/SearchForm';
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import MovieDatabase from 'utils/MovieDatabaseAPI';
-
-// const movieApi = new MovieDatabase();
 
 export default function Movies() {
-  // const [data, setData] = useState(null);
   const { data, setQuery, setPage, setData } = useThemoviedb('searchMovie');
   const [searchParams, setSearchParams] = useSearchParams();
-  // const query = searchParams.get('query');
-  // const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
 
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
@@ -32,22 +26,10 @@ export default function Movies() {
   }, [searchParams, query, page, setQuery, setPage, setData]);
 
   const updateCurrentPage = value => {
-    // console.log(serializeFormQuery());
     setSearchParams({ query, page: value });
   };
 
   console.log(data);
-
-  // useEffect(() => {
-  //   if (!query) {
-  //     setData(null);
-  //     return;
-  //   }
-  //   (async function () {
-  //     const data = await movieApi.searchMovie(query);
-  //     setData(data.results);
-  //   })();
-  // }, [searchParams, query]);
 
   return (
     <>
