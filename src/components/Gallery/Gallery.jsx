@@ -37,22 +37,22 @@ export default function Gallery({ items }) {
               width="280"
               onError={onError}
             />
+            <DescrListStyled>
+              <li>
+                <DescrTitleStyled>{title}</DescrTitleStyled>
+              </li>
+              <li>
+                <DescrGenreStyled>
+                  {genres
+                    .slice(0, 3)
+                    .map(elem => elem.name)
+                    .join(', ')}
+                  &nbsp;
+                  {release_date.slice(0, 4)}
+                </DescrGenreStyled>
+              </li>
+            </DescrListStyled>
           </StyledLink>
-          <DescrListStyled>
-            <li>
-              <DescrTitleStyled>{title}</DescrTitleStyled>
-            </li>
-            <li>
-              <DescrGenreStyled>
-                {genres
-                  .slice(0, 3)
-                  .map(elem => elem.name)
-                  .join(', ')}
-                &nbsp;
-                {release_date.slice(0, 4)}
-              </DescrGenreStyled>
-            </li>
-          </DescrListStyled>
         </GalleryLiStyled>
       ))}
     </GalleryUlStyled>

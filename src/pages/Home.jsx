@@ -13,14 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     setPage(page);
-  }, [searchParams, page, setPage]);
+  }, [page, setPage]);
 
   const updateCurrentPage = value => {
     setSearchParams({ page: value });
   };
 
   if (!data) return;
-  console.log(data);
 
   return (
     <>

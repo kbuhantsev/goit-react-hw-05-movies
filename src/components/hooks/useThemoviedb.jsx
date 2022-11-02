@@ -21,6 +21,7 @@ export default function useThemoviedb(mode = 'trends') {
   }, []);
 
   useEffect(() => {
+    // console.log(Date.now());
     if (mode === 'trends') {
       (async function () {
         const result = await axios.get('/trending/movie/week', {
