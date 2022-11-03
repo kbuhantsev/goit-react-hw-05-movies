@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import axios from 'axios';
 
 const API_KEY = '99eb21030dfb3afeff4792ddc8f57a63';
@@ -6,9 +8,9 @@ const API_KEY = '99eb21030dfb3afeff4792ddc8f57a63';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export default function useThemoviedb(mode = 'trends') {
-  const [data, setData] = useState(null);
   const [query, setQuery] = useState(null);
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [data, setData] = useState(null);
 
   const genres = useMemo(async () => {
     const result = await axios.get('/genre/movie/list', {
@@ -20,10 +22,9 @@ export default function useThemoviedb(mode = 'trends') {
     return result.data.genres;
   }, []);
 
-  useEffect(() => {
-    // console.log(Date.now());
-    if (mode === 'trends') {
-      (async function () {
+  const getData = useCallback(
+    async page => {
+      if (mode === 'trends') {
         const result = await axios.get('/trending/movie/week', {
           params: {
             api_key: API_KEY,
@@ -32,12 +33,10 @@ export default function useThemoviedb(mode = 'trends') {
         });
         if (result) {
           updateGenres(result.data, await genres);
+          setData(result.data);
         }
-        setData(result.data);
-      })();
-    } else if (mode === 'searchMovie') {
-      if (!query) return;
-      (async function () {
+      } else if (mode === 'searchMovie') {
+        if (!query) return;
         const result = await axios.get('/search/movie', {
           params: {
             api_key: API_KEY,
@@ -47,11 +46,36 @@ export default function useThemoviedb(mode = 'trends') {
         });
         if (result) {
           updateGenres(result.data, await genres);
+          setData(result.data);
         }
-        setData(result.data);
-      })();
-    }
-  }, [page, query, genres, mode]);
+      }
+    },
+    [query, genres, mode]
+  );
+
+  const handlePage = useCallback(
+    async newPage => {
+      await getData(newPage);
+
+      const paramsObj = { page: newPage };
+
+      const query = searchParams.get('query');
+      if (query) {
+        paramsObj.query = query;
+      }
+
+      setSearchParams(paramsObj);
+    },
+    // eslint-disable-next-line
+    [getData, setSearchParams]
+  );
+
+  useEffect(() => {
+    (async () => {
+      await getData(searchParams.get('page') || 1);
+    })();
+    // eslint-disable-next-line
+  }, [searchParams]);
 
   const updateGenres = (data, genres) => {
     if (!genres) return;
@@ -65,5 +89,5 @@ export default function useThemoviedb(mode = 'trends') {
     }
   };
 
-  return { data, setPage, setQuery, setData };
+  return { data, handlePage, setQuery };
 }
