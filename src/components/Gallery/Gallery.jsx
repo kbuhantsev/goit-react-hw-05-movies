@@ -20,6 +20,8 @@ export default function Gallery({ items }) {
     event.target.style.height = '400px';
   };
 
+  console.log(items);
+
   return (
     <GalleryUlStyled>
       {items.map(({ poster_path, release_date, genres, id, title }) => (
@@ -44,11 +46,11 @@ export default function Gallery({ items }) {
               <li>
                 <DescrGenreStyled>
                   {genres
-                    .slice(0, 3)
+                    ?.slice(0, 3)
                     .map(elem => elem.name)
                     .join(', ')}
                   &nbsp;
-                  {release_date.slice(0, 4)}
+                  {release_date?.slice(0, 4)}
                 </DescrGenreStyled>
               </li>
             </DescrListStyled>

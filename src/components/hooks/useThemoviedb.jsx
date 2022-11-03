@@ -75,7 +75,7 @@ export default function useThemoviedb(mode = 'trends') {
       await getData(searchParams.get('page') || 1);
     })();
     // eslint-disable-next-line
-  }, [searchParams]);
+  }, [getData]);
 
   const updateGenres = (data, genres) => {
     if (!genres) return;

@@ -3,29 +3,21 @@ import useThemoviedb from 'components/hooks/useThemoviedb';
 import PageTitle from 'components/PageTitle';
 import Pagination from 'components/Pagination';
 import SearchForm from 'components/SearchForm';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
   const { data, handlePage, setQuery } = useThemoviedb('searchMovie');
   const [searchParams] = useSearchParams();
 
-  const params = useMemo(
-    () => Object.fromEntries([...searchParams]),
-    [searchParams]
-  );
-
-  const { query } = params;
-
   useEffect(() => {
+    const query = searchParams.get('query');
     if (!query) {
       setQuery(null);
       return;
     }
     setQuery(query);
-  }, [query, setQuery, searchParams]);
-
-  console.log(data);
+  }, [searchParams, setQuery]);
 
   return (
     <>
