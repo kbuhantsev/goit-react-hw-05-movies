@@ -2,6 +2,7 @@ import Gallery from 'components/Gallery';
 import useThemoviedb from 'components/hooks/useThemoviedb';
 import PageTitle from 'components/PageTitle';
 import Pagination from 'components/Pagination';
+import ScrollButton from 'components/ScrollButton';
 import React from 'react';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         currentPage={data?.page}
         updateCurrentPage={handlePage}
       />
+      <ScrollButton />
     </>
   );
 }

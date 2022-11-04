@@ -20,8 +20,6 @@ export default function Gallery({ items }) {
     event.target.style.height = '400px';
   };
 
-  console.log(items);
-
   return (
     <GalleryUlStyled>
       {items.map(({ poster_path, release_date, genres, id, title }) => (
