@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import './tuiCustomStyles.css';
 import PropTypes from 'prop-types';
 
 export default function Pagination({
