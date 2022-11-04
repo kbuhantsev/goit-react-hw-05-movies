@@ -1,3 +1,8 @@
 .tui-pagination .tui-is-selected {
   background-color: #170bfb;
 }
+
+.tui-pagination .tui-page-btn {
+  font-size: 14px;
+  font-weight: 500;
+}
